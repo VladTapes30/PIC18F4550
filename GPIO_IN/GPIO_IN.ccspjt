@@ -1,0 +1,26 @@
+[PROJECT]
+Target=GPIO_IN.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.025
+Compiler=PCH
+[Target Data]
+FileList=GPIO_IN.c
+[GPIO_IN.c]
+Type=4
+[mru-list]
+1=GPIO_IN.c
+
+[ProjectLog]
+Days=1
+D1=22-01-2024
+D1_L=2
+D1_L1=[57958]Started Editing.
+D1_L2=[58422]Stopped Editing.
+
+[Opened Files]
+1=..\GPIO_OUT\GPIO_OUT.c
+2=GPIO_IN.c
+3=
+[Units]
+Count=1
+1=GPIO_IN (main)

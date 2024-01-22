@@ -1,0 +1,155 @@
+CCS PCH C Compiler, Version 5.025, 12859               22-ene.-24 15:48
+
+               Filename:   C:\Users\achem\OneDrive\Documentos\GitHub\PIC18F4550\GPIO_OUT\GPIO_OUT.lst
+
+               ROM used:   104 bytes (0%)
+                           Largest free fragment is 30612
+               RAM used:   5 (0%) at main() level
+                           6 (0%) worst case
+               Stack used: 1 locations
+               Stack size: 31
+
+*
+0800:  GOTO   0830
+.................... #include <18F4550.H> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... #fuses HSPLL,PLL5,USBDIV,VREGEN,CPUDIV1,WRTB,PUT,NOWDT,NOPROTECT,NOPBADEN,MCLR 
+.................... #use delay(clock=48000000) 
+*
+0808:  CLRF   FEA
+080A:  MOVLW  06
+080C:  MOVWF  FE9
+080E:  MOVF   FEF,W
+0810:  BZ    082E
+0812:  MOVLW  0F
+0814:  MOVWF  01
+0816:  CLRF   00
+0818:  DECFSZ 00,F
+081A:  BRA    0818
+081C:  DECFSZ 01,F
+081E:  BRA    0816
+0820:  MOVLW  8F
+0822:  MOVWF  00
+0824:  DECFSZ 00,F
+0826:  BRA    0824
+0828:  NOP   
+082A:  DECFSZ FEF,F
+082C:  BRA    0812
+082E:  RETURN 0
+....................  
+.................... #include <bootloader.h> 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////                       BOOTLOADER.H                                //// 
+.................... ////                                                                   //// 
+.................... ////  This include file must be included by any application loaded     //// 
+.................... ////  by the ingenia dsPIC bootloader and microchip PDFSUSB firmware.  //// 
+.................... ////                                                                   //// 
+.................... ////  The directives in this file relocate the reset and interrupt     //// 
+.................... ////  vectors as well as reserving space for the bootloader.           //// 
+.................... ////                                                                   //// 
+.................... ////  LOADER_END and LOADER_SIZE may need to be adjusted for a         //// 
+.................... ////  specific chip and bootloader.                                    //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996,2004 Custom Computer Services           //// 
+.................... //// This source code may only be used by licensed users of the CCS    //// 
+.................... //// C compiler.  This source code may only be distributed to other    //// 
+.................... //// licensed users of the CCS C compiler.  No other use,              //// 
+.................... //// reproduction or distribution is permitted without written         //// 
+.................... //// permission.  Derivative programs created using this software      //// 
+.................... //// in object code form are not restricted in any way.                //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+....................  
+....................  
+.................... #if   defined(__PCD__) 
+....................    #define LOADER_END   0x7FFE 
+....................    #define LOADER_START	0x7D00 
+....................    #define LOADER_SIZE	0x02FE 
+.................... #elif defined(__PCH__) 
+....................    #define LOADER_END   0x07FF 
+....................    #define LOADER_START	0x0000 
+....................    #define LOADER_SIZE	0x07FF 
+.................... #endif 
+....................  
+.................... #ifndef _bootloader 
+....................  
+.................... #if   defined(__PCD__) 
+....................    #build(reset=0x0100, interrupt=0x0004:0x007E) 
+.................... #elif defined(__PCH__) 
+....................    #build(reset=LOADER_END+1, interrupt=LOADER_END+9:LOADER_END+19) 
+.................... #endif 
+....................  
+.................... #org LOADER_START, LOADER_END {} 
+....................  
+.................... #endif 
+....................  
+.................... #byte porta= 0x0F80 //0000 1111 1000 0100 
+.................... #byte portb= 0x0F81 
+.................... #byte portc= 0x0F82 
+.................... #byte portd= 0x0F83 
+.................... #byte porte= 0x0F84 
+....................  
+.................... void main(void) 
+0830:  CLRF   FF8
+0832:  BCF    FD0.7
+0834:  MOVF   FC1,W
+0836:  ANDLW  C0
+0838:  IORLW  0F
+083A:  MOVWF  FC1
+083C:  MOVLW  07
+083E:  MOVWF  FB4
+.................... { 
+....................    set_tris_b(0x00);//si 1 son entradas, 0 salidas//0000 0000 
+0840:  MOVLW  00
+0842:  MOVWF  F93
+....................    PORTB = 0;//0 esta apagado 1 esta prendido 
+0844:  CLRF   F81
+....................     
+....................    while(TRUE) 
+....................    { 
+....................          portb =0B00000100; 
+0846:  MOVLW  04
+0848:  MOVWF  F81
+....................          DELAY_MS(500); 
+084A:  MOVLW  02
+084C:  MOVWF  05
+084E:  MOVLW  FA
+0850:  MOVWF  06
+0852:  RCALL  0808
+0854:  DECFSZ 05,F
+0856:  BRA    084E
+....................          portb =0B00000000; 
+0858:  CLRF   F81
+....................          DELAY_MS(500); 
+085A:  MOVLW  02
+085C:  MOVWF  05
+085E:  MOVLW  FA
+0860:  MOVWF  06
+0862:  RCALL  0808
+0864:  DECFSZ 05,F
+0866:  BRA    085E
+0868:  BRA    0846
+....................    } 
+.................... } 
+086A:  SLEEP 
+
+Configuration Fuses:
+   Word  1: CE24   PLL5 CPUDIV1 USBDIV HSPLL FCMEN IESO
+   Word  2: 1E3E   PUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8500   CCP2C1 NOPBADEN LPT1OSC MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: A00F   NOWRT NOWRTC WRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

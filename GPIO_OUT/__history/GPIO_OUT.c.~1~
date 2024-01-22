@@ -1,0 +1,24 @@
+#include <18F4550.H>
+#fuses HSPLL,PLL5,USBDIV,VREGEN,CPUDIV1,WRTB,PUT,NOWDT,NOPROTECT,NOPBADEN,MCLR
+#use delay(clock=48000000)
+
+#include <bootloader.h>
+#byte porta= 0x0F80 //0000 1111 1000 0100
+#byte portb= 0x0F81
+#byte portc= 0x0F82
+#byte portd= 0x0F83
+#byte porte= 0x0F84
+
+void main(void)
+{
+   set_tris_b(0x00);//si 1 son entradas, 0 salidas//0000 0000
+   PORTB = 0;//0 esta apagado 1 esta prendido
+   
+   while(TRUE)
+   {
+         portb =0B00000100;
+         DELAY_MS(500);
+         portb =0B00000000;
+         DELAY_MS(500);
+   }
+}

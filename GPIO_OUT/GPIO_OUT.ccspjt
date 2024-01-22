@@ -1,0 +1,20 @@
+[PROJECT]
+Target=GPIO_OUT.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.025
+Compiler=PCH
+[Target Data]
+FileList=GPIO_OUT.c
+[GPIO_OUT.c]
+Type=4
+[mru-list]
+1=GPIO_OUT.c
+[Units]
+Count=1
+1=GPIO_OUT (main)
+
+[ProjectLog]
+Days=1
+D1=22-01-2024
+D1_L=1
+D1_L1=[56918]Project Closed.

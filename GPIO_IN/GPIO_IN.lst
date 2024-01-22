@@ -1,0 +1,120 @@
+CCS PCH C Compiler, Version 5.025, 12859               22-ene.-24 16:08
+
+               Filename:   C:\Users\achem\OneDrive\Documentos\GitHub\PIC18F4550\GPIO_IN\GPIO_IN.lst
+
+               ROM used:   110 bytes (0%)
+                           Largest free fragment is 32658
+               RAM used:   5 (0%) at main() level
+                           6 (0%) worst case
+               Stack used: 1 locations
+               Stack size: 31
+
+*
+0000:  GOTO   002C
+.................... #include <18F4550.H> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... #fuses HSPLL,PLL5,USBDIV,VREGEN,CPUDIV1,WRTB,PUT,NOWDT,NOPROTECT,NOPBADEN,MCLR 
+.................... #use delay(clock=48000000) 
+0004:  CLRF   FEA
+0006:  MOVLW  06
+0008:  MOVWF  FE9
+000A:  MOVF   FEF,W
+000C:  BZ    002A
+000E:  MOVLW  0F
+0010:  MOVWF  01
+0012:  CLRF   00
+0014:  DECFSZ 00,F
+0016:  BRA    0014
+0018:  DECFSZ 01,F
+001A:  BRA    0012
+001C:  MOVLW  8F
+001E:  MOVWF  00
+0020:  DECFSZ 00,F
+0022:  BRA    0020
+0024:  NOP   
+0026:  DECFSZ FEF,F
+0028:  BRA    000E
+002A:  RETURN 0
+....................  
+.................... //#include <bootloader.h> 
+.................... #byte porta= 0x0F80 //0000 1111 1000 0100 
+.................... #byte portb= 0x0F81 
+.................... #byte portc= 0x0F82 
+.................... #byte portd= 0x0F83 
+.................... #byte porte= 0x0F84 
+....................  
+.................... void main(void) 
+002C:  CLRF   FF8
+002E:  BCF    FD0.7
+0030:  MOVF   FC1,W
+0032:  ANDLW  C0
+0034:  IORLW  0F
+0036:  MOVWF  FC1
+0038:  MOVLW  07
+003A:  MOVWF  FB4
+.................... { 
+....................   // set_tris_b(0x00);//si 1 son entradas, 0 salidas//0000 0000 
+....................    PORTB = 0;//0 esta apagado 1 esta prendido 
+003C:  CLRF   F81
+....................     
+....................    while(TRUE) 
+....................    { 
+....................         if (input(PIN_B1)) 
+003E:  BSF    F93.1
+0040:  BTFSS  F81.1
+0042:  BRA    0058
+....................         { 
+....................             output_high(PIN_B0); 
+0044:  BCF    F93.0
+0046:  BSF    F8A.0
+....................             DELAY_MS(500); 
+0048:  MOVLW  02
+004A:  MOVWF  05
+004C:  MOVLW  FA
+004E:  MOVWF  06
+0050:  RCALL  0004
+0052:  DECFSZ 05,F
+0054:  BRA    004C
+....................         } 
+0056:  BRA    006A
+....................         else 
+....................         { 
+....................            output_low(PIN_B0); 
+0058:  BCF    F93.0
+005A:  BCF    F8A.0
+....................            DELAY_MS(500);   
+005C:  MOVLW  02
+005E:  MOVWF  05
+0060:  MOVLW  FA
+0062:  MOVWF  06
+0064:  RCALL  0004
+0066:  DECFSZ 05,F
+0068:  BRA    0060
+....................         } 
+006A:  BRA    003E
+....................         
+....................    } 
+.................... } 
+006C:  SLEEP 
+
+Configuration Fuses:
+   Word  1: CE24   PLL5 CPUDIV1 USBDIV HSPLL FCMEN IESO
+   Word  2: 1E3E   PUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8500   CCP2C1 NOPBADEN LPT1OSC MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: A00F   NOWRT NOWRTC WRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB
