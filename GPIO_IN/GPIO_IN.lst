@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.025, 12859               22-ene.-24 16:08
+CCS PCH C Compiler, Version 5.025, 12859               23-ene.-24 09:40
 
                Filename:   C:\Users\achem\OneDrive\Documentos\GitHub\PIC18F4550\GPIO_IN\GPIO_IN.lst
 
@@ -72,12 +72,12 @@ CCS PCH C Compiler, Version 5.025, 12859               22-ene.-24 16:08
 ....................     
 ....................    while(TRUE) 
 ....................    { 
-....................         if (input(PIN_B1)) 
+....................         if (input(PIN_B1))//estado del pin 
 003E:  BSF    F93.1
 0040:  BTFSS  F81.1
 0042:  BRA    0058
 ....................         { 
-....................             output_high(PIN_B0); 
+....................             output_high(PIN_B0);//prender 
 0044:  BCF    F93.0
 0046:  BSF    F8A.0
 ....................             DELAY_MS(500); 
@@ -92,7 +92,7 @@ CCS PCH C Compiler, Version 5.025, 12859               22-ene.-24 16:08
 0056:  BRA    006A
 ....................         else 
 ....................         { 
-....................            output_low(PIN_B0); 
+....................            output_low(PIN_B0);//apagar 
 0058:  BCF    F93.0
 005A:  BCF    F8A.0
 ....................            DELAY_MS(500);   

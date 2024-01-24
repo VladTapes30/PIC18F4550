@@ -38,10 +38,10 @@ Project Directory:
     C:\Users\achem\OneDrive\Documentos\GitHub\PIC18F4550\GPIO_IN\
 
 Project Files:
-    GPIO_IN.c                                               [22-ene.-24 16:08  CRC=8FB6C4F6]
+    GPIO_IN.c                                               [23-ene.-24 09:40  CRC=791E8D98]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.H [18-abr.-14 15:57  CRC=68697302]
 
-Source signature=6089AAFA
+Source signature=49F1739C
 
 Units:
     GPIO_IN (main)

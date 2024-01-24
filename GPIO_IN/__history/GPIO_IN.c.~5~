@@ -16,14 +16,14 @@ void main(void)
    
    while(TRUE)
    {
-        if (input(PIN_B1))//estado del pin
+        if (input(PIN_B1))
         {
-            output_high(PIN_B0);//prender
+            output_high(PIN_B0);
             DELAY_MS(500);
         }
         else
         {
-           output_low(PIN_B0);//apagar
+           output_low(PIN_B0);
            DELAY_MS(500);  
         }
        
