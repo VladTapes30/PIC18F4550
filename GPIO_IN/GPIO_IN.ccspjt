@@ -11,12 +11,12 @@ Type=4
 1=GPIO_IN.c
 
 [ProjectLog]
-Days=2
+Days=5
 D1=22-01-2024
 D1_L=3
 D1_L1=[57958]Started Editing.
 D1_L2=[58422]Stopped Editing.
-TotalEdit=6
+TotalEdit=7
 TotalDebug=0
 D1_E=3
 D1_D=0
@@ -29,6 +29,20 @@ D2_L3=[34806]Stopped Editing.
 D2_E=3
 D2_D=0
 D2_L4=[35915]Project Closed.
+D3=26-01-2024
+D3_L=3
+D3_L1=[41628]Project Opened.
+D3_L2=[42528]Started Editing.
+D3_L3=[42845]Stopped Editing.
+D4=27-01-2024
+D4_E=1
+D4_D=0
+D4_L=1
+D4_L1=[64077]Project Closed.
+D5=29-01-2024
+D5_L=2
+D5_L1=[43320]Project Opened.
+D5_L2=[44340]Project Closed.
 
 [Opened Files]
 1=..\GPIO_OUT\GPIO_OUT.c
