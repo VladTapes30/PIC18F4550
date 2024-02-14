@@ -1,0 +1,124 @@
+CCS PCH C Compiler, Version 5.025, 12859               06-feb.-24 09:29
+
+               Filename:   C:\Users\achem\OneDrive\Documentos\GitHub\PIC18F4550\ADC\ADC.lst
+
+               ROM used:   122 bytes (0%)
+                           Largest free fragment is 32646
+               RAM used:   5 (0%) at main() level
+                           6 (0%) worst case
+               Stack used: 0 locations
+               Stack size: 31
+
+*
+0000:  GOTO   002E
+.................... #include <18F4550.H> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... #device adc=8 //10 quiere decir que es de 10bits 
+.................... #fuses HSPLL,PLL5,USBDIV,VREGEN,CPUDIV1,WRTB,PUT,NOWDT,NOPROTECT,NOPBADEN,MCLR 
+.................... #use delay(clock=48000000) 
+0004:  CLRF   FEA
+0006:  MOVLW  05
+0008:  MOVWF  FE9
+000A:  MOVF   FEF,W
+000C:  BZ    002A
+000E:  MOVLW  0F
+0010:  MOVWF  01
+0012:  CLRF   00
+0014:  DECFSZ 00,F
+0016:  BRA    0014
+0018:  DECFSZ 01,F
+001A:  BRA    0012
+001C:  MOVLW  8F
+001E:  MOVWF  00
+0020:  DECFSZ 00,F
+0022:  BRA    0020
+0024:  NOP   
+0026:  DECFSZ FEF,F
+0028:  BRA    000E
+002A:  GOTO   0068 (RETURN)
+....................  
+....................  
+....................  
+.................... #byte porta= 0x0F80 
+.................... #byte portb= 0x0F81 
+.................... #byte portc= 0x0F82 
+.................... #byte portd= 0x0F83 
+.................... #byte porte= 0x0F84 
+....................  
+.................... int8 dato; 
+.................... void main(void) 
+002E:  CLRF   FF8
+0030:  BCF    FD0.7
+0032:  MOVF   FC1,W
+0034:  ANDLW  C0
+0036:  IORLW  0F
+0038:  MOVWF  FC1
+003A:  MOVLW  07
+003C:  MOVWF  FB4
+.................... { 
+....................    /////configuracion de adc 
+....................     setup_adc(ADC_CLOCK_DIV_64);//VELOCIDAD DE CONVERCION 
+003E:  MOVF   FC0,W
+0040:  ANDLW  C0
+0042:  IORLW  06
+0044:  MOVWF  FC0
+0046:  BCF    FC0.7
+0048:  BSF    FC2.0
+....................     setup_adc_ports(AN0); 
+004A:  MOVF   FC1,W
+004C:  ANDLW  C0
+004E:  IORLW  0E
+0050:  MOVWF  FC1
+....................     set_adc_channel(0);  
+0052:  MOVLW  00
+0054:  MOVWF  01
+0056:  MOVF   FC2,W
+0058:  ANDLW  C3
+005A:  IORWF  01,W
+005C:  MOVWF  FC2
+....................     
+....................    //configuracion de entradas/salidas 
+....................     set_tris_b(0X00);//0 out ...  1 in 0000 0000 --> b7 b6 b5 .. b0 
+005E:  MOVLW  00
+0060:  MOVWF  F93
+....................      
+....................    while(TRUE) 
+....................    { 
+....................       delay_us(1000); 
+0062:  MOVLW  01
+0064:  MOVWF  05
+0066:  BRA    0004
+....................       dato = read_adc(); 
+0068:  BSF    FC2.1
+006A:  BTFSC  FC2.1
+006C:  BRA    006A
+006E:  MOVFF  FC4,04
+....................        
+....................       portb = dato; 
+0072:  MOVFF  04,F81
+0076:  BRA    0062
+....................    } 
+.................... } 
+0078:  SLEEP 
+
+Configuration Fuses:
+   Word  1: CE24   PLL5 CPUDIV1 USBDIV HSPLL FCMEN IESO
+   Word  2: 1E3E   PUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8500   CCP2C1 NOPBADEN LPT1OSC MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: A00F   NOWRT NOWRTC WRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

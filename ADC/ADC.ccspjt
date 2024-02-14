@@ -1,0 +1,25 @@
+[PROJECT]
+Target=ADC.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.025
+Compiler=PCH
+[Target Data]
+FileList=ADC.c
+[ADC.c]
+Type=4
+[mru-list]
+1=ADC.c
+[Units]
+Count=1
+1=ADC (main)
+
+[ProjectLog]
+Days=1
+D1=06-02-2024
+D1_L=2
+D1_L1=[34443]Stopped Editing.
+TotalEdit=4
+TotalDebug=0
+D1_E=4
+D1_D=0
+D1_L2=[35523]Project Closed.
