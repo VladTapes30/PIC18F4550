@@ -1,0 +1,50 @@
+[PROJECT]
+Target=BLINK.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.025
+Compiler=PCH
+[Target Data]
+FileList=BLINK.c
+[BLINK.c]
+Type=4
+[mru-list]
+1=BLINK.c
+
+[Opened Files]
+1=BLINK.c
+2=..\..\..\..\..\Downloads\test1.c
+3=..\..\..\Documents\UTT\UTT DISCO C\PICC18f4550\10ªCUATRIMESTRE\configuracion bluetooth\blue.c
+4=..\bluetooth\config.c
+5=
+
+[ProjectLog]
+Days=2
+D1=11-03-2024
+D1_L=12
+D1_L1=[79328]Stopped Editing.
+D1_L2=[80300]Started Editing.
+D1_L3=[80601]Stopped Editing.
+D1_L4=[83454]Project Closed.
+D1_L5=[83566]Project Opened.
+D1_L6=[83679]Started Editing.
+D1_L7=[83686]Stopped Editing.
+TotalEdit=3
+TotalDebug=0
+D1_E=1
+D1_D=0
+D1_L8=[83729]Started Editing.
+D1_L9=[84133]Stopped Editing.
+D1_L10=[84923]Started Editing.
+D1_L11=[85229]Stopped Editing.
+D1_L12=[85281]Project Closed.
+D2=12-03-2024
+D2_L=4
+D2_L1=[33857]Project Opened.
+D2_L2=[35075]Started Editing.
+D2_L3=[35159]Stopped Editing.
+D2_E=2
+D2_D=0
+D2_L4=[35159]Project Closed.
+[Units]
+Count=1
+1=BLINK (main)

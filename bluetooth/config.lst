@@ -1,0 +1,193 @@
+CCS PCH C Compiler, Version 5.025, 12859               13-mar.-24 22:02
+
+               Filename:   C:\Users\achem\OneDrive\Documentos\GitHub\PIC18F4550\bluetooth\config.lst
+
+               ROM used:   258 bytes (1%)
+                           Largest free fragment is 32510
+               RAM used:   5 (0%) at main() level
+                           6 (0%) worst case
+               Stack used: 1 locations
+               Stack size: 31
+
+*
+0000:  GOTO   0070
+.................... #include <18f4550.h> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+0004:  DATA 41,54
+0006:  DATA 2B,52
+0008:  DATA 41,55
+000A:  DATA 44,34
+000C:  DATA 00,00
+000E:  DATA 41,54
+0010:  DATA 2B,4E
+0012:  DATA 41,4D
+0014:  DATA 45,56
+0016:  DATA 4C,41
+0018:  DATA 44,00
+001A:  DATA 41,54
+001C:  DATA 2B,50
+001E:  DATA 49,4E
+0020:  DATA 31,32
+0022:  DATA 33,34
+0024:  DATA 00,00
+*
+004E:  TBLRD*+
+0050:  MOVF   FF5,F
+0052:  BZ    006E
+0054:  MOVFF  FF6,05
+0058:  MOVFF  FF7,06
+005C:  MOVF   FF5,W
+005E:  BTFSS  F9E.4
+0060:  BRA    005E
+0062:  MOVWF  FAD
+0064:  MOVFF  05,FF6
+0068:  MOVFF  06,FF7
+006C:  BRA    004E
+006E:  RETURN 0
+....................  
+.................... #list 
+....................  
+.................... #fuses HSPLL, PLL5, USBDIV,VREGEN, CPUDIV1, PUT, MCLR, WRTB, NOWDT, NOPROTECT, NOPBADEN 
+.................... #use delay (clock=48000000) 
+*
+0026:  CLRF   FEA
+0028:  MOVLW  06
+002A:  MOVWF  FE9
+002C:  MOVF   FEF,W
+002E:  BZ    004C
+0030:  MOVLW  0F
+0032:  MOVWF  01
+0034:  CLRF   00
+0036:  DECFSZ 00,F
+0038:  BRA    0036
+003A:  DECFSZ 01,F
+003C:  BRA    0034
+003E:  MOVLW  8F
+0040:  MOVWF  00
+0042:  DECFSZ 00,F
+0044:  BRA    0042
+0046:  NOP   
+0048:  DECFSZ FEF,F
+004A:  BRA    0030
+004C:  RETURN 0
+.................... #use rs232 (baud=9600,xmit=PIN_C6,rcv=PIN_C7) 
+....................  
+.................... //#include <usb_bootloader.h>  
+....................  
+.................... #byte portb= 0x0F81 
+....................  
+.................... void  main(void) 
+*
+0070:  CLRF   FF8
+0072:  BCF    FD0.7
+0074:  BSF    FB8.3
+0076:  MOVLW  E1
+0078:  MOVWF  FAF
+007A:  MOVLW  04
+007C:  MOVWF  FB0
+007E:  MOVLW  A6
+0080:  MOVWF  FAC
+0082:  MOVLW  90
+0084:  MOVWF  FAB
+0086:  MOVF   FC1,W
+0088:  ANDLW  C0
+008A:  IORLW  0F
+008C:  MOVWF  FC1
+008E:  MOVLW  07
+0090:  MOVWF  FB4
+.................... { 
+....................    set_tris_B(0xFE); 
+0092:  MOVLW  FE
+0094:  MOVWF  F93
+....................    bit_set(portb,0); 
+0096:  BSF    F81.0
+....................     
+....................    printf("AT"); 
+0098:  MOVLW  41
+009A:  BTFSS  F9E.4
+009C:  BRA    009A
+009E:  MOVWF  FAD
+00A0:  MOVLW  54
+00A2:  BTFSS  F9E.4
+00A4:  BRA    00A2
+00A6:  MOVWF  FAD
+....................    delay_ms(1000); 
+00A8:  MOVLW  04
+00AA:  MOVWF  05
+00AC:  MOVLW  FA
+00AE:  MOVWF  06
+00B0:  RCALL  0026
+00B2:  DECFSZ 05,F
+00B4:  BRA    00AC
+....................     
+....................    printf("AT+RAUD4"); 
+00B6:  MOVLW  04
+00B8:  MOVWF  FF6
+00BA:  MOVLW  00
+00BC:  MOVWF  FF7
+00BE:  RCALL  004E
+....................    delay_ms(1000); 
+00C0:  MOVLW  04
+00C2:  MOVWF  05
+00C4:  MOVLW  FA
+00C6:  MOVWF  06
+00C8:  RCALL  0026
+00CA:  DECFSZ 05,F
+00CC:  BRA    00C4
+....................     
+....................    printf("AT+NAMEVLAD"); 
+00CE:  MOVLW  0E
+00D0:  MOVWF  FF6
+00D2:  MOVLW  00
+00D4:  MOVWF  FF7
+00D6:  RCALL  004E
+....................    delay_ms(1000); 
+00D8:  MOVLW  04
+00DA:  MOVWF  05
+00DC:  MOVLW  FA
+00DE:  MOVWF  06
+00E0:  RCALL  0026
+00E2:  DECFSZ 05,F
+00E4:  BRA    00DC
+....................     
+....................    printf("AT+PIN1234"); 
+00E6:  MOVLW  1A
+00E8:  MOVWF  FF6
+00EA:  MOVLW  00
+00EC:  MOVWF  FF7
+00EE:  RCALL  004E
+....................    delay_ms(1000); 
+00F0:  MOVLW  04
+00F2:  MOVWF  05
+00F4:  MOVLW  FA
+00F6:  MOVWF  06
+00F8:  RCALL  0026
+00FA:  DECFSZ 05,F
+00FC:  BRA    00F4
+....................     
+....................    while(TRUE){ 
+00FE:  BRA    00FE
+....................    } 
+....................     
+.................... } 
+....................  
+0100:  SLEEP 
+
+Configuration Fuses:
+   Word  1: CE24   PLL5 CPUDIV1 USBDIV HSPLL FCMEN IESO
+   Word  2: 1E3E   PUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8500   CCP2C1 NOPBADEN LPT1OSC MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: A00F   NOWRT NOWRTC WRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

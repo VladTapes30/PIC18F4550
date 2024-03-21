@@ -1,0 +1,56 @@
+[PROJECT]
+Target=config.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.025
+Compiler=PCH
+[Target Data]
+FileList=config.c
+[config.c]
+Type=4
+[mru-list]
+1=config.c
+
+[ProjectLog]
+Days=2
+D1=12-03-2024
+D1_L=15
+D1_L1=[2078]Started Editing.
+D1_L2=[2088]Stopped Editing.
+TotalEdit=10
+TotalDebug=0
+D1_E=9
+D1_D=0
+D1_L3=[3258]Started Editing.
+D1_L4=[3386]Stopped Editing.
+D1_L5=[3518]Started Editing.
+D1_L6=[3693]Stopped Editing.
+D1_L7=[3693]Project Closed.
+D1_L8=[33432]Project Opened.
+D1_L9=[33523]Started Editing.
+D1_L10=[33823]Stopped Editing.
+D1_L11=[33857]Project Closed.
+D1_L12=[35159]Project Opened.
+D1_L13=[35665]Started Editing.
+D1_L14=[35966]Stopped Editing.
+D1_L15=[43219]Project Closed.
+D2=13-03-2024
+D2_L=7
+D2_L1=[78954]Project Opened.
+D2_L2=[79117]Started Editing.
+D2_L3=[79120]Stopped Editing.
+D2_E=1
+D2_D=0
+D2_L4=[79274]Started Editing.
+D2_L5=[79644]Stopped Editing.
+D2_L6=[80523]Started Editing.
+D2_L7=[80709]Project Closed.
+
+[Opened Files]
+1=..\PRUEBAS\BLINK.c
+2=..\..\..\..\..\Downloads\test1.c
+3=..\..\..\Documents\UTT\UTT DISCO C\PICC18f4550\10ªCUATRIMESTRE\configuracion bluetooth\blue.c
+4=config.c
+5=
+[Units]
+Count=1
+1=config (main)

@@ -1,0 +1,40 @@
+[PROJECT]
+Target=blue-blink.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.025
+Compiler=PCH
+[Target Data]
+FileList=blue-blink.c
+[blue-blink.c]
+Type=4
+[mru-list]
+1=blue-blink.c
+
+[ProjectLog]
+Days=3
+D1=13-03-2024
+D1_L=2
+D1_L1=[80731]Started Editing.
+D1_L2=[81789]Stopped Editing.
+TotalEdit=13
+TotalDebug=0
+D2=14-03-2024
+D2_E=13
+D2_D=0
+D2_L=1
+D2_L1=[1266]Project Closed.
+D3=15-03-2024
+D3_L=2
+D3_L1=[42769]Project Opened.
+D3_L2=[67877]Project Closed.
+
+[Opened Files]
+1=..\PRUEBAS\BLINK.c
+2=..\..\..\..\..\Downloads\test1.c
+3=..\..\..\Documents\UTT\UTT DISCO C\PICC18f4550\10ªCUATRIMESTRE\configuracion bluetooth\blue.c
+4=..\bluetooth\config.c
+5=blue-blink.c
+6=
+[Units]
+Count=1
+1=blue-blink (main)

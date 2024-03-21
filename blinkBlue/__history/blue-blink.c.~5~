@@ -1,0 +1,37 @@
+#include <18f4550.h>
+#fuses HSPLL,PLL5,USBDIV,VREGEN,CPUDIV1,PUT,MCLR,WRTB,NOWDT,NOPROTECT,NOPBADEN
+#use delay(clock=48000000)
+#use rs232(baud=9600,xmit=PIN_C6,rcv=PIN_C7)
+
+#byte portb = 0x0F81
+//#locate dato=0x0005
+
+void main(void)
+{
+   char dato;
+  // char letra;
+   set_tris_b(0x00);
+   
+   while(TRUE)
+   {
+     dato=getc();
+     
+     if (dato == 'x')
+      {
+         
+       /*  printf("%c",letra);
+         putc(letra);*/
+        // printf ("recivido");
+         output_high(PIN_B0); 
+        // delay_ms(500);
+         //output_low(PIN_B7);
+         //delay_ms(500);
+      }
+    if (dato == 'z')
+     {
+         output_low(PIN_B0);
+         delay_ms(500);
+     }
+   }
+}
+

@@ -1,0 +1,62 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+005     main.dato
+F81     portb
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  @cinit1
+000004  main
+000026  @cinit2
+
+Project Directory:
+    C:\Users\achem\OneDrive\Documentos\GitHub\PIC18F4550\blinkBlue\
+
+Project Files:
+    blue-blink.c                                            [13-mar.-24 22:38  CRC=1981B771]
+    ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\18f4550.h [18-abr.-14 15:57  CRC=68697302]
+
+Source signature=EA549D75
+
+Units:
+    blue-blink (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Compile Mode:       CCS5
+
+Output Files:
+    XREF file:   blue-blink.xsym
+    Errors:      blue-blink.err
+    Ext Symbols: blue-blink.esym
+    INHX32:      blue-blink.hex
+    Symbols:     blue-blink.sym
+    List:        blue-blink.lst
+    Debug/COFF:  blue-blink.cof
+    Project:     blue-blink.ccspjt
+    Call Tree:   blue-blink.tre
+    Statistics:  blue-blink.STA

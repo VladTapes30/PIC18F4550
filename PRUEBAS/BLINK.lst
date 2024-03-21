@@ -1,0 +1,260 @@
+CCS PCH C Compiler, Version 5.025, 12859               12-mar.-24 09:25
+
+               Filename:   C:\Users\achem\OneDrive\Documentos\GitHub\PIC18F4550\PRUEBAS\BLINK.lst
+
+               ROM used:   88 bytes (0%)
+                           Largest free fragment is 24484
+               RAM used:   4 (0%) at main() level
+                           5 (0%) worst case
+               Stack used: 1 locations
+               Stack size: 31
+
+*
+2000:  GOTO   2030
+.................... #include <18F4550.H> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... #fuses HSPLL,PLL5,USBDIV,VREGEN,CPUDIV1,WRTB,PUT,NOWDT,NOPROTECT,NOPBADEN,MCLR 
+.................... #use delay(clock=48000000) 
+*
+2008:  CLRF   FEA
+200A:  MOVLW  05
+200C:  MOVWF  FE9
+200E:  MOVF   FEF,W
+2010:  BZ    202E
+2012:  MOVLW  0F
+2014:  MOVWF  01
+2016:  CLRF   00
+2018:  DECFSZ 00,F
+201A:  BRA    2018
+201C:  DECFSZ 01,F
+201E:  BRA    2016
+2020:  MOVLW  8F
+2022:  MOVWF  00
+2024:  DECFSZ 00,F
+2026:  BRA    2024
+2028:  NOP   
+202A:  DECFSZ FEF,F
+202C:  BRA    2012
+202E:  RETURN 0
+....................  
+.................... #include <usb_bootloader.h>  
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////                                                                   //// 
+.................... ////                     USB_BOOTLOADER.H                              //// 
+.................... ////                                                                   //// 
+.................... ////  This include file must be included by any application loaded     //// 
+.................... ////  by the example USB bootloader (ex_usb_bootloader                 //// 
+.................... ////                                                                   //// 
+.................... ////  The directives in this file relocate the reset and interrupt     //// 
+.................... ////  vectors as well as reserving space for the bootloader.           //// 
+.................... ////                                                                   //// 
+.................... ////  For more documentation see ex_usb_bootloader.c                   //// 
+.................... ////                                                                   //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////                                                                   //// 
+.................... //// VERSION HISTORY                                                   //// 
+.................... ////                                                                   //// 
+.................... //// July 9th, 2012:                                                   //// 
+.................... ////  Added support for PCD (see ex_usb_bootloader.c).                 //// 
+.................... ////                                                                   //// 
+.................... //// March 5th, 2009:                                                  //// 
+.................... ////   Cleanup for Wizard.                                             //// 
+.................... ////   PIC24 Initial release.                                          //// 
+.................... ////                                                                   //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996,2009 Custom Computer Services           //// 
+.................... //// This source code may only be used by licensed users of the CCS    //// 
+.................... //// C compiler.  This source code may only be distributed to other    //// 
+.................... //// licensed users of the CCS C compiler.  No other use,              //// 
+.................... //// reproduction or distribution is permitted without written         //// 
+.................... //// permission.  Derivative programs created using this software      //// 
+.................... //// in object code form are not restricted in any way.                //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+....................  
+.................... #define LOADER_START       (0) 
+.................... #define LOADER_SIZE        (0x2000) 
+....................  
+.................... #if defined(__USB_87J50__) 
+....................  #define APPLICATION_END    (getenv("PROGRAM_MEMORY")-9) //configuration bits 
+.................... #elif defined(__PCD__) 
+....................  #define APPLICATION_END    (getenv("PROGRAM_MEMORY")-2) 
+.................... #else 
+....................  #define APPLICATION_END    (getenv("PROGRAM_MEMORY")-1) 
+.................... #endif 
+....................  
+.................... #if defined(__PCM__) 
+....................    #define LOADER_END      (LOADER_SIZE+0x40-1) 
+.................... #elif defined(__PCH__) 
+....................    #define FLASH_SIZE getenv("FLASH_ERASE_SIZE") 
+....................    #if (((LOADER_SIZE) % FLASH_SIZE) == 0 )       //IF LOADER_SIZE is even flash boundary 
+....................       #define LOADER_END   (LOADER_SIZE-1) 
+....................    #else                                  //ELSE, goto next even boundary 
+....................       #define LOADER_END   (((LOADER_SIZE)+FLASH_SIZE-((LOADER_SIZE)%FLASH_SIZE))-1) 
+....................    #endif 
+.................... #elif defined(__PCD__) 
+....................    #define FLASH_SIZE getenv("FLASH_ERASE_SIZE")/2 
+....................    #if (((LOADER_START+LOADER_SIZE) % FLASH_SIZE) == 0) 
+....................       #define LOADER_END (LOADER_START+LOADER_SIZE-1) 
+....................    #else 
+....................       #define LOADER_END (LOADER_START+(LOADER_SIZE+FLASH_SIZE-((LOADER_SIZE)%FLASH_SIZE))-1) 
+....................    #endif 
+.................... #else 
+....................  #error PCM, PCH, and PCD only supported 
+.................... #endif 
+....................  
+.................... #define APPLICATION_START  (LOADER_END+1) 
+....................  
+.................... #if defined(__PCH__) 
+....................  #define APPLICATION_ISR (APPLICATION_START+8) 
+.................... #elif defined(__PCM__) 
+....................  #define APPLICATION_ISR (APPLICATION_START+4) 
+.................... #elif defined(__PCD__) 
+....................  #define APPLICATION_ISR (APPLICATION_START+4) 
+.................... #endif 
+....................  
+.................... //// --- end configuration --- //////////////////////////////////////////// 
+....................  
+.................... #ifdef _bootloader 
+....................  // bootloader won't use interrupts, instead it will poll USB IF 
+....................  #define USB_ISR_POLLING 
+....................   
+....................  /* 
+....................   Provide an empty application, so if you load this .HEX file into the pic 
+....................   without an application this will prevent the pic from executing unknown code. 
+....................  */ 
+....................  #org APPLICATION_START,APPLICATION_START+0xF 
+....................  void BlankApplication(void)  
+....................  { 
+....................    while(TRUE); 
+....................  } 
+....................  
+....................  //we need to prevent the loader from using application space 
+....................  #if (APPLICATION_END > 0x10000) 
+....................    #org APPLICATION_START+0x10, 0xFFFF {} 
+....................    #if (APPLICATION_END > 0x20000) 
+....................       #org 0x10000, 0x1FFFF {} 
+....................       #org 0x20000, APPLICATION_END {} 
+....................    #else 
+....................       #org 0x10000, APPLICATION_END {} 
+....................    #endif 
+....................  #else 
+....................    #org APPLICATION_START+0x10, APPLICATION_END {} 
+....................  #endif 
+....................  
+....................    #define USB_STRINGS_OVERWRITTEN 
+....................    char USB_STRING_DESC_OFFSET[]={0,4,12}; 
+....................     
+....................    #define USB_CONFIG_PID  0x000c 
+....................  
+....................    // Here is where the "CCS" Manufacturer string and "SERIAL DEMO" are stored. 
+....................    // Strings are saved as unicode. 
+....................    // These strings are mostly only displayed during the add hardware wizard. 
+....................    // Once the operating system drivers have been installed it will usually display 
+....................    // the name from the drivers .INF. 
+....................    char const USB_STRING_DESC[]={ 
+....................       //string 0 
+....................             4, //length of string index 
+....................             0x03, //USB_DESC_STRING_TYPE, //descriptor type 0x03 (STRING) 
+....................             0x09,0x04,   //Microsoft Defined for US-English 
+....................       //string 1  - manufacturer 
+....................             8, //length of string index 
+....................             0x03, //USB_DESC_STRING_TYPE, //descriptor type 0x03 (STRING) 
+....................             'C',0, 
+....................             'C',0, 
+....................             'S',0, 
+....................       //string 2 - product 
+....................             38, //length of string index 
+....................             0x03, //USB_DESC_STRING_TYPE, //descriptor type 0x03 (STRING) 
+....................             'C',0, 
+....................             'C',0, 
+....................             'S',0, 
+....................             ' ',0, 
+....................             'C',0, 
+....................             'D',0, 
+....................             'C',0, 
+....................             ' ',0, 
+....................             'B',0, 
+....................             'o',0, 
+....................             'o',0, 
+....................             't',0, 
+....................             'l',0, 
+....................             'o',0, 
+....................             'a',0, 
+....................             'd',0, 
+....................             'e',0, 
+....................             'r',0 
+....................    }; 
+.................... #endif   //_bootloader 
+....................  
+.................... #ifndef _bootloader 
+....................  //in the application, this moves the reset and isr vector out of the bootload 
+....................  //space.  it then reserves the loader space from being used by the application. 
+....................  #build(reset=APPLICATION_START, interrupt=APPLICATION_ISR) 
+....................   
+....................  #org 0, LOADER_END {} 
+....................  
+.................... #endif 
+....................  
+....................  
+.................... #byte porte= 0x0F84 
+.................... #byte portb= 0x0F81 
+....................  
+.................... void main(void) 
+2030:  CLRF   FF8
+2032:  BCF    FD0.7
+2034:  MOVF   FC1,W
+2036:  ANDLW  C0
+2038:  IORLW  0F
+203A:  MOVWF  FC1
+203C:  MOVLW  07
+203E:  MOVWF  FB4
+.................... { 
+....................    set_tris_b(0x00); 
+2040:  MOVLW  00
+2042:  MOVWF  F93
+....................    PORTB =0; 
+2044:  CLRF   F81
+....................    
+....................    while(TRUE) 
+....................     
+....................   { 
+....................    portb =0B00000010; 
+2046:  MOVLW  02
+2048:  MOVWF  F81
+....................    DELAY_MS(50); 
+204A:  MOVLW  32
+204C:  MOVWF  05
+204E:  RCALL  2008
+....................    portb =0B00000000; 
+2050:  CLRF   F81
+....................    DELAY_MS(50); 
+2052:  MOVLW  32
+2054:  MOVWF  05
+2056:  RCALL  2008
+2058:  BRA    2046
+....................     
+....................   } 
+.................... } 
+205A:  SLEEP 
+
+Configuration Fuses:
+   Word  1: CE24   PLL5 CPUDIV1 USBDIV HSPLL FCMEN IESO
+   Word  2: 1E3E   PUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8500   CCP2C1 NOPBADEN LPT1OSC MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: A00F   NOWRT NOWRTC WRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

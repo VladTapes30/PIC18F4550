@@ -1,0 +1,47 @@
+
+ROM used:   88/32768 (0%)
+            92/32768 (0%) including unused fragments
+
+            0.1 Average locations per line
+            11.0 Average locations per statement
+
+RAM used:   4/2048 (0%) at main() level
+            5/2048 (0%) worst case
+
+Stack used: 1 worst case (1 in main + 0 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   25     8 100  BLINK.c
+  837     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\18F4550.H
+  157     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\usb_bootloader.h
+----- -----
+ 1019     8 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     40  23    1             @delay_ms1
+0     44  25    0    136  2.2  main
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               1
+    Statements              8
+    Comments                188
+    Volume (V)              140
+    Difficulty (D)          1.9
+    Effort to implement (E) 273
+    Time to implement (T)   0 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    145
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-01FFE     0  8192  
+02000-02006     4  4  
+02008-07FFE    84  24484  
+
+
+

@@ -1,0 +1,98 @@
+CCS PCH C Compiler, Version 5.025, 12859               13-mar.-24 22:38
+
+               Filename:   C:\Users\achem\OneDrive\Documentos\GitHub\PIC18F4550\blinkBlue\blue-blink.lst
+
+               ROM used:   76 bytes (0%)
+                           Largest free fragment is 32692
+               RAM used:   5 (0%) at main() level
+                           5 (0%) worst case
+               Stack used: 0 locations
+               Stack size: 31
+
+*
+0000:  GOTO   0004
+.................... #include <18f4550.h> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... #fuses HSPLL,PLL5,USBDIV,VREGEN,CPUDIV1,PUT,MCLR,WRTB,NOWDT,NOPROTECT,NOPBADEN 
+.................... #use delay(clock=48000000) 
+.................... #use rs232(baud=9600,xmit=PIN_C6,rcv=PIN_C7) 
+....................  
+.................... #define LED1 PIN_B0 
+....................  
+.................... #byte portb = 0x0F81 
+.................... //#locate dato=0x0005 
+....................  
+.................... void main(void) 
+0004:  CLRF   FF8
+0006:  BCF    FD0.7
+0008:  BSF    FB8.3
+000A:  MOVLW  E1
+000C:  MOVWF  FAF
+000E:  MOVLW  04
+0010:  MOVWF  FB0
+0012:  MOVLW  A6
+0014:  MOVWF  FAC
+0016:  MOVLW  90
+0018:  MOVWF  FAB
+001A:  MOVF   FC1,W
+001C:  ANDLW  C0
+001E:  IORLW  0F
+0020:  MOVWF  FC1
+0022:  MOVLW  07
+0024:  MOVWF  FB4
+0026:  CLRF   05
+.................... { 
+....................    char dato = 0X00; 
+....................    set_tris_b(0x00); 
+0028:  MOVLW  00
+002A:  MOVWF  F93
+....................     
+....................    while(TRUE) 
+....................    { 
+....................      dato = getc();//TOMAR LOS DATOS QUE SE ENCUENTRAN EN MI BLUETOOTH 
+002C:  BTFSS  F9E.5
+002E:  BRA    002C
+0030:  MOVFF  FAE,05
+....................       
+....................      if (dato == 'x')//EL DATO MANDADO DE APP INVENTOR DEL BOTON ON 
+0034:  MOVF   05,W
+0036:  SUBLW  78
+0038:  BNZ   003E
+....................          output_high(LED1); //PRENDER LED 
+003A:  BCF    F93.0
+003C:  BSF    F8A.0
+....................           
+....................      if (dato == 'z')//EL DATO ENVIADO DE APP INVENTOR DEL BOTON OFF 
+003E:  MOVF   05,W
+0040:  SUBLW  7A
+0042:  BNZ   0048
+....................         output_low(LED1);//APAGAR LED 
+0044:  BCF    F93.0
+0046:  BCF    F8A.0
+0048:  BRA    002C
+....................    } 
+.................... } 
+....................  
+004A:  SLEEP 
+
+Configuration Fuses:
+   Word  1: CE24   PLL5 CPUDIV1 USBDIV HSPLL FCMEN IESO
+   Word  2: 1E3E   PUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8500   CCP2C1 NOPBADEN LPT1OSC MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: A00F   NOWRT NOWRTC WRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB
