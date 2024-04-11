@@ -11,12 +11,12 @@ Type=4
 1=blue-blink.c
 
 [ProjectLog]
-Days=3
+Days=4
 D1=13-03-2024
 D1_L=2
 D1_L1=[80731]Started Editing.
 D1_L2=[81789]Stopped Editing.
-TotalEdit=13
+TotalEdit=14
 TotalDebug=0
 D2=14-03-2024
 D2_E=13
@@ -27,6 +27,17 @@ D3=15-03-2024
 D3_L=2
 D3_L1=[42769]Project Opened.
 D3_L2=[67877]Project Closed.
+D4=09-04-2024
+D4_L=7
+D4_L1=[61447]Project Opened.
+D4_L2=[61514]Started Editing.
+D4_L3=[61814]Stopped Editing.
+D4_E=1
+D4_D=0
+D4_L4=[64984]Project Closed.
+D4_L5=[73036]Project Opened.
+D4_L6=[73635]Started Editing.
+D4_L7=[74000]Project Closed.
 
 [Opened Files]
 1=..\PRUEBAS\BLINK.c
