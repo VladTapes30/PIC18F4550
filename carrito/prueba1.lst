@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.025, 12859               09-abr.-24 21:16
+CCS PCH C Compiler, Version 5.025, 12859               16-abr.-24 09:41
 
                Filename:   C:\Users\achem\OneDrive\Documentos\GitHub\PIC18F4550\carrito\prueba1.lst
 
@@ -72,35 +72,35 @@ CCS PCH C Compiler, Version 5.025, 12859               09-abr.-24 21:16
 ....................       
 ....................      switch (Bdato) 
 0034:  MOVF   05,W
-0036:  XORLW  78
+0036:  XORLW  59
 0038:  BZ    0048
-003A:  XORLW  02
+003A:  XORLW  03
 003C:  BZ    004E
-003E:  XORLW  03
+003E:  XORLW  16
 0040:  BZ    0054
-0042:  XORLW  0E
+0042:  XORLW  01
 0044:  BZ    005A
 0046:  BRA    0060
 ....................      { 
-....................          case 'x': 
+....................          case 'Y': 
 ....................              output_high(LED1); //PRENDER LED 
 0048:  BCF    F93.0
 004A:  BSF    F8A.0
 ....................              break; 
 004C:  BRA    0070
-....................          case 'z': 
+....................          case 'Z': 
 ....................              output_high(LED2); //PRENDER LED 
 004E:  BCF    F93.1
 0050:  BSF    F8A.1
 ....................              break; 
 0052:  BRA    0070
-....................          case 'y': 
+....................          case 'L': 
 ....................              output_high(LED3); //PRENDER LED 
 0054:  BCF    F93.2
 0056:  BSF    F8A.2
 ....................              break; 
 0058:  BRA    0070
-....................          case 'w': 
+....................          case 'M': 
 ....................              output_high(LED4); //PRENDER LED 
 005A:  BCF    F93.3
 005C:  BSF    F8A.3

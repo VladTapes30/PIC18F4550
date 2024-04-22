@@ -22,16 +22,16 @@ void main(void)
      
      switch (Bdato)
      {
-         case 'Y':
+         case 'x':
              output_high(LED1); //PRENDER LED
              break;
-         case 'Z':
+         case 'z':
              output_high(LED2); //PRENDER LED
              break;
-         case 'L':
+         case 'y':
              output_high(LED3); //PRENDER LED
              break;
-         case 'M':
+         case 'w':
              output_high(LED4); //PRENDER LED
              break;
              

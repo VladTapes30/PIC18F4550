@@ -1,8 +1,7 @@
-D G "LED4" 0 9 "PIN_B3"
-D G "__PCH__" 0 47 ""5.025""
-D G "__DEVICE__" 0 47 "4550"
-D G "__DATE__" 0 47 ""09-abr.-24""
-D G "__TIME__" 0 47 ""21:16:31"" "Standard Header file for the PIC18F4550 device ////////////////"
+D G "__PCH__" 0 0 ""5.025""
+D G "__DEVICE__" 0 0 ""
+D G "__DATE__" 0 0 ""16-abr.-24""
+D G "__TIME__" 0 0 ""09:41:37"" "Standard Header file for the PIC18F4550 device ////////////////"
 c L "set_tris_a" 1 3 6 "FUNCTION"
 v L "value" 1 45 "int8" `54 
 f B "set_tris_a" 1 45 "void(int8 value)" `53 
