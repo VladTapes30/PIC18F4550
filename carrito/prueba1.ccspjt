@@ -11,7 +11,7 @@ Type=4
 1=prueba1.c
 
 [ProjectLog]
-Days=2
+Days=3
 D1=09-04-2024
 D1_L=5
 D1_L1=[75521]Started Editing.
@@ -33,6 +33,10 @@ D2_L5=[35175]Stopped Editing.
 D2_E=2
 D2_D=0
 D2_L6=[40706]Project Closed.
+D3=02-07-2024
+D3_L=2
+D3_L1=[32037]Project Opened.
+D3_L2=[33225]Project Closed.
 
 [Opened Files]
 1=..\PRUEBAS\BLINK.c

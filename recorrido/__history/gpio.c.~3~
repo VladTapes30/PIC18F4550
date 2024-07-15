@@ -1,0 +1,11 @@
+#include <18F4550.H>
+#fuses HSPLL,PLL5,USBDIV,VREGEN,CPUDIV1,WRTB,PUT,NOWDT,NOPROTECT,NOPBADEN,MCLR
+#use delay(clock=48000000)
+
+void main (void)
+{
+   while(TRUE)
+   {
+      
+   }
+}

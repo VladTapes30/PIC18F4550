@@ -1,0 +1,93 @@
+CCS PCH C Compiler, Version 5.025, 12859               02-jul.-24 09:41
+
+               Filename:   C:\Users\achem\OneDrive\Documentos\GitHub\PIC18F4550\recorrido\gpio.lst
+
+               ROM used:   88 bytes (0%)
+                           Largest free fragment is 32680
+               RAM used:   4 (0%) at main() level
+                           5 (0%) worst case
+               Stack used: 1 locations
+               Stack size: 31
+
+*
+0000:  GOTO   002C
+.................... #include <18F4550.H> 
+.................... //////////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... #fuses HSPLL,PLL5,USBDIV,VREGEN,CPUDIV1,WRTB,PUT,NOWDT,NOPROTECT,NOPBADEN,MCLR 
+.................... #use delay(clock=48000000) 
+0004:  CLRF   FEA
+0006:  MOVLW  05
+0008:  MOVWF  FE9
+000A:  MOVF   FEF,W
+000C:  BZ    002A
+000E:  MOVLW  0F
+0010:  MOVWF  01
+0012:  CLRF   00
+0014:  DECFSZ 00,F
+0016:  BRA    0014
+0018:  DECFSZ 01,F
+001A:  BRA    0012
+001C:  MOVLW  8F
+001E:  MOVWF  00
+0020:  DECFSZ 00,F
+0022:  BRA    0020
+0024:  NOP   
+0026:  DECFSZ FEF,F
+0028:  BRA    000E
+002A:  RETURN 0
+....................  
+.................... void main (void) 
+002C:  CLRF   FF8
+002E:  BCF    FD0.7
+0030:  MOVF   FC1,W
+0032:  ANDLW  C0
+0034:  IORLW  0F
+0036:  MOVWF  FC1
+0038:  MOVLW  07
+003A:  MOVWF  FB4
+.................... { 
+....................    set_tris_b(0x00);//0000 0000 
+003C:  MOVLW  00
+003E:  MOVWF  F93
+....................    while(TRUE) 
+....................    { 
+....................       output_high(PIN_B0); 
+0040:  BCF    F93.0
+0042:  BSF    F8A.0
+....................       delay_ms(100); 
+0044:  MOVLW  64
+0046:  MOVWF  05
+0048:  RCALL  0004
+....................       output_low(PIN_B0); 
+004A:  BCF    F93.0
+004C:  BCF    F8A.0
+....................       delay_ms(100); 
+004E:  MOVLW  64
+0050:  MOVWF  05
+0052:  RCALL  0004
+0054:  BRA    0040
+....................    } 
+.................... } 
+0056:  SLEEP 
+
+Configuration Fuses:
+   Word  1: CE24   PLL5 CPUDIV1 USBDIV HSPLL FCMEN IESO
+   Word  2: 1E3E   PUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8500   CCP2C1 NOPBADEN LPT1OSC MCLR
+   Word  4: 00A1   STVREN NOLVP ICSP2 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: A00F   NOWRT NOWRTC WRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

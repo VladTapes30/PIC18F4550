@@ -1,0 +1,36 @@
+[PROJECT]
+Target=gpio.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.025
+Compiler=PCH
+[Target Data]
+FileList=gpio.c
+[gpio.c]
+Type=4
+[mru-list]
+1=gpio.c
+
+[ProjectLog]
+Days=1
+D1=02-07-2024
+D1_L=3
+D1_L1=[34863]Started Editing.
+D1_L2=[35036]Stopped Editing.
+TotalEdit=3
+TotalDebug=0
+D1_E=3
+D1_D=0
+D1_L3=[35036]Project Closed.
+
+[Opened Files]
+1=..\PRUEBAS\BLINK.c
+2=..\..\..\..\..\Downloads\test1.c
+3=..\..\..\Documents\UTT\UTT DISCO C\PICC18f4550\10ªCUATRIMESTRE\configuracion bluetooth\blue.c
+4=..\bluetooth\config.c
+5=..\blinkBlue\blue-blink.c
+6=..\carrito\prueba1.c
+7=gpio.c
+8=
+[Units]
+Count=1
+1=gpio (main)
